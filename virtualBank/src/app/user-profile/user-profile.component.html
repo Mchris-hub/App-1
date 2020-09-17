@@ -1,0 +1,67 @@
+
+  <header>
+    <mat-toolbar >
+   
+        <span id="title"><fa-icon [icon]="university" id="mainIcon"></fa-icon> MyVirtualBank</span>
+        <span class="example-spacer"></span>
+        
+        <button (click)="onLogout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <span  ><strong>Logout  &nbsp;<fa-icon [icon]="signout" id="logout"></fa-icon></strong></span>
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </mat-toolbar>
+  </header>
+<main>
+    <article>
+        <h2 id="mainheader"><fa-icon [icon]="user"></fa-icon> Account details</h2>
+      <h3> {{ userDetails._id}}</h3>
+      <h3> {{ userDetails.name}} {{ userDetails.surname}}</h3>
+      <h3>balance</h3>
+      <h3><fa-icon [icon]="arrow"></fa-icon></h3>
+      
+      <h3><span id="money">{{ userDetails.moneyInBank}}</span> </h3>
+      
+
+
+     </article>
+    <nav *ngIf="userDetails">
+      <h2><fa-icon [icon]="creditCard"></fa-icon> credit Card details</h2>
+      <hr>
+      <h3>{{ (userDetails.creditCard.creditcardNumber).slice(0,4) + " "+ (userDetails.creditCard.creditcardNumber).slice(4,8)+" "+(userDetails.creditCard.creditcardNumber).slice(8,12)+" "+(userDetails.creditCard.creditcardNumber).slice(12,16)}}</h3>
+      
+      <hr>
+      <h3 id="owner">{{ userDetails.creditCard.creditcardExpiration}}</h3>
+      <hr>
+      <h3 id="pin"><i>{{(userDetails.creditCard.creditcardSignature).slice(0,3)+" "+(userDetails.creditCard.creditcardSignature).slice(3,6)}}</i> </h3>
+      <hr>
+      <h3> {{userDetails.creditCard.creditowner}}</h3>
+      <!-- <hr>
+      <h3 id="pin"> <i></i></h3> -->
+      <br>
+      <br>
+    </nav>
+    <aside>
+        <h2 id="contact"><fa-icon [icon]="faCoffee"></fa-icon> My contact details </h2>
+
+        <h3>{{ userDetails.email}}</h3>
+        <h3>{{ userDetails.Address}}</h3>
+        <h3>{{ userDetails.phoneNumber}}</h3>
+        <h3>{{ userDetails.myIdOrPassportNumber}}</h3>
+        <h3>{{ userDetails.myIdOrPassortNumber}}</h3>
+    </aside>
+    
+</main>
+<!-- <footer>
+    <ul class="slideshow">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        
+
+      </ul>     -->
+<!-- </footer> -->
+

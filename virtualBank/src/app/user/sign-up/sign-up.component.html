@@ -1,0 +1,53 @@
+
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input autocomplete="off" type="text" #name="ngModel" [(ngModel)]="userService.selectedUser.name" name="name" placeholder="Name"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }">
+  <div *ngIf="signUpForm.submitted && !name.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <input autocomplete="off"  type="text" #surname="ngModel" [(ngModel)]="userService.selectedUser.surname" name="surname" placeholder="Surname"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !surname.valid }">
+  <div *ngIf="signUpForm.submitted && !name.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <input autocomplete="off"  type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
+  required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+  <div *ngIf="signUpForm.submitted && email.errors">
+    <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+  </div>
+  <input autocomplete="off" type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+  minlength="8" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+  <div *ngIf="signUpForm.submitted && password.errors">
+    <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+  </div> 
+  
+  <textarea type="text" rows="4" cols="50"  #address="ngModel" [(ngModel)]="userService.selectedUser.address" name="address" placeholder="Address"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !address.valid }">
+  </textarea>
+  <div *ngIf="signUpForm.submitted && !address.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <input autocomplete="off"  type="text" #phoneNumber="ngModel" [(ngModel)]="userService.selectedUser.phoneNumber" name="phoneNumber" placeholder="Phone Number"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !phoneNumber.valid }">
+  <div *ngIf="signUpForm.submitted && !phoneNumber.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <input autocomplete="off"  type="text" #myIdOrPassortNumber="ngModel" [(ngModel)]="userService.selectedUser.myIdOrPassortNumber" name="myIdOrPassortNumber" placeholder="Id/Passport Number"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !myIdOrPassortNumber.valid }">
+  <div *ngIf="signUpForm.submitted && !myIdOrPassortNumber.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <input type="submit" value="Sign Up">
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
